@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>💙 HAPPY VALENTINE'S DAY💙</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at top, #1b3a4b, #0b132b);
+    font-family: "Trebuchet MS", sans-serif;
+    color: #e0f2ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .card {
+    background: rgba(10, 30, 60, 0.85);
+    padding: 40px;
+    border-radius: 25px;
+    width: 420px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(100, 181, 246, 0.6);
+    backdrop-filter: blur(6px);
+    z-index: 2;
+  }
+
+  h1 {
+    color: #90caf9;
+    text-shadow: 0 0 12px #64b5f6;
+    margin-bottom: 25px;
+  }
+
+  .links a {
+    display: block;
+    margin: 12px 0;
+    padding: 14px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #64b5f6, #1e88e5);
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    box-shadow: 0 0 15px rgba(100,181,246,0.7);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+
+  .links a:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px rgba(100,181,246,1);
+  }
+
+  .section {
+    display: none;
+    margin-top: 20px;
+    animation: fadeIn 0.6s ease;
+  }
+
+  img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(100,181,246,0.6);
+  }
+
+  .ending {
+    margin-top: 25px;
+    font-size: 22px;
+    color: #bbdefb;
+    text-shadow: 0 0 12px #64b5f6;
+    display: none;
+    animation: fadeIn 1s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .heart {
+    position: absolute;
+    bottom: -30px;
+    font-size: 18px;
+    opacity: 0.7;
+    animation: floatUp linear infinite;
+    filter: drop-shadow(0 0 6px #64b5f6);
+  }
+
+  @keyframes floatUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-120vh); opacity: 0; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>💙 Just for You 💙</h1>
+
+  <div class="links">
+    <a onclick="openSection('message')">💌 Message</a>
+    <a onclick="openSection('picture')">🖼️ Picture</a>
+    <a onclick="openSection('wishes')">💭 Wishes</a>
+  </div>
+
+  <div id="message" class="section">
+    <p>
+      Out of everyone in this world,<br><br>
+      you’re the one who makes me feel safe, calm,
+      and completely myself 💙<br><br>
+      I’m so grateful for you.
+    </p>
+  </div>
+
+  <div id="picture" class="section">
+    <img src="https://raw.githubusercontent.com/ShizuRei12/Celebrations/main/US.jpg" alt="Us 💙">
+    <p style="margin-top:10px;">One of my favorite moments 💫</p>
+  </div>
+
+  <div id="wishes" class="section">
+    <p>
+      My happiest memory with you is the moment<br>
+      everything felt simple…<br><br>
+      just us, laughing, forgetting time,<br>
+      and knowing this was exactly where I wanted to be 💙
+    </p>
+  </div>
+
+  <div id="ending" class="ending">
+    💙 Happy Valentine’s Day,<br>
+    <strong>My love</strong> 💙
+  </div>
+</div>
+
+<audio id="music" src="song.mp3" loop></audio>
+
+<script>
+  let opened = {
+    message: false,
+    picture: false,
+    memory: false
+  };
+
+  function openSection(id) {
+    document.getElementById("music").play();
+
+    document.querySelectorAll(".section").forEach(sec => {
+      sec.style.display = "none";
+    });
+
+    document.getElementById(id).style.display = "block";
+    opened[id] = true;
+
+    if (opened.message && opened.picture && opened.memory) {
+      document.getElementById("ending").style.display = "block";
+    }
+  }
+
+  function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💙";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (4 + Math.random() * 6) + "s";
+    heart.style.fontSize = (14 + Math.random() * 22) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 10000);
+  }
+
+  setInterval(createHeart, 400);
+</script>
+
+</body>
+</html>
